@@ -237,6 +237,7 @@ class JarvisAudioPlayer(private val context: Context) {
         }
     }
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     private suspend fun playPcmBytesInternal(audioBytes: ByteArray, sampleRate: Int) = withContext(Dispatchers.IO) {
         val channelConfig = AudioFormat.CHANNEL_OUT_MONO
         val audioFormat = AudioFormat.ENCODING_PCM_16BIT

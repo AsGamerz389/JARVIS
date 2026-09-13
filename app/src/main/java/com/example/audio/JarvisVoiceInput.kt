@@ -45,7 +45,7 @@ class JarvisVoiceInput(
         }
     }
 
-    private fun createListener(): RecognitionListener {
+    internal fun createListener(): RecognitionListener {
         return object : RecognitionListener {
             override fun onReadyForSpeech(params: Bundle?) {
                 Log.d(TAG, "Ready for speech")
@@ -60,7 +60,7 @@ class JarvisVoiceInput(
             override fun onRmsChanged(rmsdB: Float) {
                 // rmsdB typically ranges from -2 to 10
                 val normalized = ((rmsdB + 2f) / 12f).coerceIn(0f, 1f)
-                onRmsChanged(normalized)
+                this@JarvisVoiceInput.onRmsChanged(normalized)
             }
 
             override fun onBufferReceived(buffer: ByteArray?) {}

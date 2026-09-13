@@ -252,7 +252,7 @@ class GeminiAudioService {
                         if (part.has("inlineData")) {
                             val inline = part.getJSONObject("inlineData")
                             audioMime = inline.optString("mimeType", "audio/pcm;rate=24000")
-                            audioData = inline.optString("data", null)
+                            audioData = if (inline.has("data")) inline.getString("data") else null
                             Log.d(TAG, "Found inline audio in response: mime=$audioMime bytes=${audioData?.length}")
                         }
 
